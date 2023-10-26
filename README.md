@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 # API
 
 [Luke Peavey - Quotable](https://github.com/lukePeavey/quotable)
+
+# Depedency
+
+- [Tabler Icons](https://tabler.io/docs/icons/react)

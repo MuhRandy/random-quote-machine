@@ -1,34 +1,38 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { useEffect } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import Card from './components/Card';
 
 function App() {
-  const [count, setCount] = useState(0);
   const [quote, setQuote] = useState([]);
-  const url = "https://api.quotable.io/random";
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  useEffect(() => {
-    async function getQuotes() {
-      const { data } = await axios(url);
-      setQuote(data);
-    }
+  const API_URL = 'https://api.quotable.io';
 
-    getQuotes();
-  }, []);
+  const refresh = () => {
+    axios
+      .get(API_URL + '/random')
+      .then((response) => {
+        setQuote(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error.message);
+      });
+  };
 
-  function handleClick() {
-    console.log(quote);
-  }
+  useEffect(refresh, []);
 
   return (
-    <>
-      <h1>{quote.content}</h1>
-      <p>{quote.author}</p>
-      <button onClick={handleClick}>Get Quote</button>
-    </>
+    <div className="flex justify-center items-center h-screen">
+      <Card
+        author={quote.author}
+        content={quote.content}
+        handleClick={refresh}
+      />
+    </div>
   );
 }
 
