@@ -14,3 +14,4 @@ Currently, two official plugins are available:
 # Depedency
 
 - [Tabler Icons](https://tabler.io/docs/icons/react)
+- [Axios](https://axios-http.com/docs/intro)
