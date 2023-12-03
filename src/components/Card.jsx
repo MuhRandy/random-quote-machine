@@ -6,12 +6,11 @@ const Card = ({ author, content, handleClick }) => {
     "https://twitter.com/intent/tweet?text=" +
     encodeURIComponent('"' + content + '"' + " - " + author);
 
-  console.log(encoded);
   return (
     <div
       id="quote-box"
       className={clsx(
-        "flex flex-col w-[80vw] min-h-[250px] justify-center items-center rounded-lg border p-4 gap-2 relative text-md",
+        "flex flex-col w-[80vw] justify-center items-center rounded-lg border p-4 gap-2 relative text-md",
         "sm:w-[500px]"
       )}
     >
@@ -31,22 +30,24 @@ const Card = ({ author, content, handleClick }) => {
       <div id="author" className="self-end font-bold">
         -{author}
       </div>
-      <button
-        id="new-quote"
-        className="bg-black text-white text-sm sm:text-md font-bold py-1 px-5 rounded-md relative top-[15px]"
-        onClick={handleClick}
-      >
-        New Quote
-      </button>
-      <a
-        className="absolute bottom-5 right-5"
-        id="tweet-quote"
-        title={"Tweet this quote!"}
-        target="_top"
-        href={encoded}
-      >
-        <IconBrandTwitterFilled />
-      </a>
+      <div className="relative flex justify-center w-full h-[30px]">
+        <button
+          id="new-quote"
+          className="bg-black text-white text-sm sm:text-md font-bold py-1 px-5 rounded-md h-fit"
+          onClick={handleClick}
+        >
+          New Quote
+        </button>
+        <a
+          className="absolute bottom-0 right-0"
+          id="tweet-quote"
+          title={"Tweet this quote!"}
+          target="_top"
+          href={encoded}
+        >
+          <IconBrandTwitterFilled />
+        </a>
+      </div>
     </div>
   );
 };
